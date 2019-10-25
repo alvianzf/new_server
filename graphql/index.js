@@ -11,6 +11,7 @@ const getAllUsers = wrapper.getAllusers.getAllUsers
 
 //Mutations 
 const sendMessage = wrapper.sendMessage.sendMessage
+const createUser = wrapper.createUser.createUser
 
 //Subscriptions 
 const chat = wrapper.chat.chat
@@ -23,6 +24,7 @@ const schemaDefinition = `
 
   type Mutation {
     sendMessage(input: String): message
+    createUser(name: String, email: String, password: String): user
   }
 
   type Subscription {
@@ -48,7 +50,8 @@ const schema = makeExecutableSchema({
       getAllUsers
     },
     Mutation: {
-      sendMessage
+      sendMessage,
+      createUser
     },
     Subscription: {
       chat

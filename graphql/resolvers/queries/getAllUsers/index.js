@@ -1,20 +1,16 @@
-const getAllUsers = async () => {
+const DB_Schema = require('../../../../db_schema/User_Schema')
+
+const getAllUsers = async (root, args, context) => {
   try{
     console.log('Halo All Users List')
 
-    let dummyData = [
-      {
-        id: 1,
-        name: "test 1",
-      }, {
-        id: 2,
-        name: "test 2",
+    let getDataFromDB = await DB_Schema.find().exec()
+    console.log(getDataFromDB)
+    if (getDataFromDB) {
+      return {
+        data: getDataFromDB,
+        error: null
       }
-    ]
-
-    return {
-      data: dummyData,
-      error: null
     }
 
   }catch(error){

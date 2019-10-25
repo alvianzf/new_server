@@ -2,8 +2,9 @@ let user;
 
 user = `
  type user {
-    id: Int 
-     name: String 
+     id: String 
+     name: String
+     email: String
   }
 
   type users {

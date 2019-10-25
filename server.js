@@ -8,7 +8,17 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 
+var db = require('mongoose')
+db.connect(process.env.DB, {
+  useNewUrlParser: true
+}).then(function(res) {
+  console.log(res)
+}).catch(function(err) {
+  console.log(err.message)
+})
+
 const PORT = process.env.PORT || 3000 // env goes here
+
 
 //graphql schema 
 var schema = require('./graphql')
@@ -23,6 +33,7 @@ const server = new ApolloServer({
   schema,
   context: async ({ req, res, next }) => {
     return {
+      db,
       req
     }
   },
